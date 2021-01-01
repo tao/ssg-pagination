@@ -1,0 +1,48 @@
+title: News
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          factory: sentence
+          type: text
+          required: true
+          validate:
+            - required
+      -
+        handle: content
+        field:
+          factory: text(2000)
+          restrict: false
+          automatic_line_breaks: true
+          automatic_links: false
+          escape_markup: false
+          smartypants: false
+          antlers: false
+          display: Content
+          type: markdown
+          icon: markdown
+          listable: hidden
+      -
+        handle: synopsis
+        field:
+          factory: paragraph
+          character_limit: '500'
+          antlers: false
+          display: Synopsis
+          type: textarea
+          icon: textarea
+          listable: hidden
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          required: true
+          localizable: true
+          validate:
+            - required

@@ -1,0 +1,55 @@
+{{ if {statamic_pages:pagination} }}
+<nav class="pagination">
+  <ul>
+    {{ statamic_pages:prev_page }}
+      {{ if no_results }}
+        <li class="disabled"><span>&laquo;</span></li>
+      {{ else }}
+        <li><a href="{{ prev_page }}">&laquo;</a></li>
+      {{ /if }}
+    {{ /statamic_pages:prev_page }}
+
+    {{ statamic_pages:segments }}
+      {{ first }}
+          {{ if page == {statamic_pages:page} }}
+              <li class="active"><span>{{ page }}</span></li>
+          {{ else }}
+              <li><a href="{{ url }}">{{ page }}</a></li>
+          {{ /if }}
+      {{ /first }}
+
+      {{ if slider }}
+          <li class="disabled"><span>...</span></li>
+      {{ /if }}
+
+      {{ slider }}
+          {{ if page == {statamic_pages:page} }}
+              <li class="active"><span>{{ page }}</span></li>
+          {{ else }}
+              <li><a href="{{ url }}">{{ page }}</a></li>
+          {{ /if }}
+      {{ /slider }}
+
+      {{ if slider || (!slider && last) }}
+          <li class="disabled"><span>...</span></li>
+      {{ /if }}
+
+      {{ last }}
+          {{ if page == {statamic_pages:page} }}
+              <li class="active"><span>{{ page }}</span></li>
+          {{ else }}
+              <li><a href="{{ url }}">{{ page }}</a></li>
+          {{ /if }}
+      {{ /last }}
+    {{ /statamic_pages:segments }}
+
+    {{ statamic_pages:next_page }}
+      {{ if no_results }}
+        <li class="disabled"><span>&raquo;</span></li>
+      {{ else }}
+        <li><a href="{{ next_page }}">&raquo;</a></li>
+      {{ /if }}
+    {{ /statamic_pages:next_page }}
+  </ul>
+</nav>
+{{ /if }}

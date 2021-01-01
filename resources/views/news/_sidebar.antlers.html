@@ -1,0 +1,24 @@
+<div class="border-b mb-8">
+  <h1 class="text-4xl text-white">Years</h1>
+</div>
+
+<ul>
+  <li>
+    <a class="px-2 -ml-2 relative block" href="/news">
+      {{ if current_uri == '/news' }}
+      <span class="rounded absolute inset-0 bg-gray-900"></span>
+      {{ /if }}
+      <span class="relative text-yellow-300 hover:text-orange-400 hover:underline">Latest</span>
+    </a>
+  </li>
+  {{ years collection="news" }}
+    <li>
+      <a class="px-2 -ml-2 relative block" href="/news/{{ value }}">
+        {{ if value == year }}
+        <span class="rounded absolute inset-0 bg-gray-900"></span>
+        {{ /if }}
+        <span class="relative text-yellow-300 hover:text-orange-400 hover:underline">{{ value }}</span>
+      </a>
+    </li>
+  {{ /years }}
+</ul>

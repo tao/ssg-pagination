@@ -1,0 +1,9 @@
+{{ collection from="news" as="entries" date:contains="{year}" sort="date:desc" }}
+  {{ partial:partials/no-results }}
+
+  {{ statamic_pages:results as="entries" }}
+    {{ partial:news/list }}
+  {{ /statamic_pages:results }}
+
+  {{ partial:partials/pagination collection="news" }}
+{{ /collection }}

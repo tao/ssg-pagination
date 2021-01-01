@@ -1,0 +1,28 @@
+/* This is all you. */
+.pagination {
+  @apply px-0 py-8 mb-1;
+
+  ul {
+    @apply list-none flex border px-0 w-full rounded;
+  }
+
+  li {
+    @apply px-4;
+  }
+
+  li.active {
+    @apply text-orange-300;
+  }
+
+  li.disabled {
+    @apply text-gray-700;
+  }
+}
+
+ul.pagination {
+  @apply flex w-full border rounded list-none px-0 px-0 mb-1;
+
+  li {
+    @apply px-4;
+  }
+}

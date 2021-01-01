@@ -1,0 +1,9 @@
+<div class="border-b mb-8">
+  <h1 class="text-4xl text-white">News: {{ year }}</h1>
+</div>
+
+{{ partial:news/pagination/years collection="news" }}
+
+{{ section:sidebar }}
+  {{ partial:news/sidebar }}
+{{ /section:sidebar }}
