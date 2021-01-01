@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Statamic\Statamic;
 use Statamic\StaticSite\Generator;
 use Statamic\Facades\Config;
+use Statamic\Facades\Term;
 use App\Acme\Pagination\StaticPagination;
 use App\Acme\Pagination\YearPagination;
 
@@ -42,6 +43,22 @@ class AppServiceProvider extends ServiceProvider
 
             $pages = (new StaticPagination)->generateEntryUrls($entries);
             $urls = $urls->merge($pages);
+
+            // CALCULATE PAGINATION FOR TAXONOMIES
+            // for each taxonomy route in ssg config
+            // push urls for each taxonomy type
+            // with the page numbers from the total amount of entries
+            $taxonomies = Config::get('statamic.ssg.pagination.taxonomies');
+
+            foreach ($taxonomies as $taxonomy) {
+                $handle = $taxonomy['handle'] ?? $taxonomy['collection'];
+                $terms = Term::whereTaxonomy($handle)->map(function ($term) {
+                    return $term->slug();
+                });
+
+                $pages = (new StaticPagination)->generateTaxonomyUrls($taxonomy, $terms);
+                $urls = $urls->merge($pages);
+            }
 
             // CALCULATE YEAR INDEXES
             $indexes = Config::get('statamic.ssg.pagination.years');

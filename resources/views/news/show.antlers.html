@@ -2,6 +2,12 @@
   <h1 class="text-4xl text-orange-300">{{ title }}</h1>
   <p class="text-lg text-indigo-300 italic">{{ synopsis }}</p>
 
+  <p class="text-red-400 py-4">
+    {{ tags }}
+      <a href="{{ url }}" class="hover:underline">#{{ slug }}</a>&nbsp;
+    {{ /tags }}
+  </p>
+
   <br/>
 
   <div class="max-w-2xl">

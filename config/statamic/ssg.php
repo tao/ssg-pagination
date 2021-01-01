@@ -78,7 +78,7 @@ return [
         ],
       ),
       'taxonomies' => [
-        //
+        ['collection' => 'news', 'handle' => 'tags', 'url' => '/news/tags'],
       ],
       'years' => [
         ['collection' => 'news', 'url' => '/news', 'paginate' => true],

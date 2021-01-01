@@ -1,6 +1,8 @@
 title: News
 template: news/show
 layout: layout
+taxonomies:
+  - tags
 revisions: false
 route: 'news/{slug}'
 date: true

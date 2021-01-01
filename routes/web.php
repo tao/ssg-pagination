@@ -28,3 +28,11 @@ Route::statamic('news/{year}/{current_page?}', 'news.year')->where([
   'current_page' => '^[0-9]{1,3}$',
   'year' => '^[0-9]{4}$'
 ]);
+
+// News Taxonomy pages
+Route::statamic('news/tags/{slug}', 'news.tags.show', [
+ 'current_page' => 1,
+]);
+
+Route::statamic('news/tags/{slug}/{current_page?}', 'news.tags.show')
+->where(['current_page' => '^[0-9]{1,3}$']);

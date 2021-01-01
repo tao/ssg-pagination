@@ -22,3 +22,20 @@
     </li>
   {{ /years }}
 </ul>
+
+<div class="border-b mb-8">
+  <h1 class="text-4xl text-white">Tags</h1>
+</div>
+
+<ul>
+  {{ taxonomy from="tags" }}
+  <li>
+    <a class="px-2 -ml-2 relative block" href="/news{{ url }}">
+      {{ if slug == last_segment }}
+      <span class="rounded absolute inset-0 bg-gray-900"></span>
+      {{ /if }}
+      <span class="relative text-yellow-300 hover:text-orange-400 hover:underline">{{ slug }}</span>
+    </a>
+  </li>
+  {{ /taxonomy }}
+</ul>

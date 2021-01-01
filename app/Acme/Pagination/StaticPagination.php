@@ -49,7 +49,7 @@ class StaticPagination
         // fetch the entries in the collection
         $this->entries = Entry::query()
           ->where('collection', $collection)
-          ->whereIn('type', $terms)
+          ->whereIn('tags', $terms)
           ->where('published', true);
 
         return $this;
@@ -70,6 +70,14 @@ class StaticPagination
               case 'isnt': {
                 // filter isnt
                 $this->entries = $this->entries->whereNotIn($options[0], explode('|', $options[1]));
+                break;
+              }
+              case 'contains': {
+                // filter contains
+                $this->entries = $this->entries->get()->filter(function ($entry) use ($options) {
+                    $tags = $entry->tags ?? [];
+                    return in_array($options[1], $tags);
+                });
                 break;
               }
               case 'date_contains': {
@@ -144,7 +152,7 @@ class StaticPagination
         $urls = collect();
 
         foreach ($terms as $term) {
-            $defaultFilter = ['is' => ['type', $term]];
+            $defaultFilter = ['contains' => ['tags', $term]];
             $filterByTerm = $taxonomy['filters'][$term] ?? $defaultFilter;
 
             // add first page
